@@ -2,9 +2,13 @@ import { Slot, Link } from "expo-router";
 import { View, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
+import { usePathname } from "expo-router";
 
 export default function AuthLayout() {
-  const [current, setCurrent] = React.useState("login");
+  const pathname = usePathname();
+  const [current, setCurrent] = React.useState(
+    pathname == "/" ? "signin" : pathname.replace("/", "")
+  );
   function handleNavigate(path: string) {
     setCurrent(path);
   }
@@ -14,8 +18,8 @@ export default function AuthLayout() {
         <View className="flex-[0.05] p-2 flex-row">
           <Link href={"/(auth)/signin"} asChild>
             <TouchableOpacity
-              onPress={() => handleNavigate("login")}
-              className={`flex-[0.5] items-center justify-center ${current == "login" ? "border-b-[3px]" : ""} border-black`}
+              onPress={() => handleNavigate("signin")}
+              className={`flex-[0.5] items-center justify-center ${current == "signin" ? "border-b-[3px]" : "opacity-30"} border-black`}
             >
               <Text className="font-medium text-lg">Sign in</Text>
             </TouchableOpacity>
@@ -23,7 +27,7 @@ export default function AuthLayout() {
           <Link href={"/(auth)/signup"} asChild>
             <TouchableOpacity
               onPress={() => handleNavigate("signup")}
-              className={`flex-[0.5] items-center justify-center ${current == "signup" ? "border-b-[3px]" : ""} border-black`}
+              className={`flex-[0.5] items-center justify-center ${current == "signup" ? "border-b-[3px]" : "opacity-30"} border-black`}
             >
               <Text className="font-medium text-lg">Sign up</Text>
             </TouchableOpacity>

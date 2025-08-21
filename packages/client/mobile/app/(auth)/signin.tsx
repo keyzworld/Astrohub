@@ -2,9 +2,13 @@ import React from "react";
 import { View, Text } from "react-native";
 import FormInput from "@/components/ui/FormInput";
 import PrimaryButton from "@/components/ui/PrimaryButton";
+import { useRouter } from "expo-router";
 
 function signin() {
-  function handleButtonPress() {}
+  const router = useRouter();
+  function handleButtonPress() {
+    router.push("/(main)/home");
+  }
   return (
     <View className="flex-1 gap-4 mt-4">
       <View className="gap-1">

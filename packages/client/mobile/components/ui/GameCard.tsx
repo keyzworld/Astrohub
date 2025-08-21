@@ -1,0 +1,86 @@
+import { Image } from "expo-image";
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { AntDesign, Feather } from "@expo/vector-icons";
+interface GameCardProps {
+  index?: number;
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+  category: {
+    id: string;
+    name: string;
+  };
+  rating?: number;
+  isLiked?: boolean;
+}
+
+const GameCard = (props: GameCardProps) => {
+  return (
+    <TouchableOpacity
+      style={{ width: "48%", alignItems: "flex-start", position: "relative" }}
+    >
+      <View
+        style={{ height: 200 }}
+        className="w-full rounded-lg overflow-hidden"
+      >
+        <Image
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: 10,
+            overflow: "hidden",
+          }}
+          contentFit="cover"
+          contentPosition={"center"}
+          source={{ uri: props.image }}
+        />
+      </View>
+      <Text className="font-semibold text-xl">{props.name}</Text>
+      <Text style={{ color: "#ccc" }} className="font-light text-sm">
+        {props.category.name}
+      </Text>
+      <View
+        style={{ justifyContent: "space-between", alignItems: "center" }}
+        className=" w-full flex-row justify-between"
+      >
+        <Text className="font-medium text-lg">
+          ₦
+          {props.price.toLocaleString("en-ng", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text className="font-normal text-sm">5.0</Text>
+          <AntDesign name="star" size={18} color="#FFDB58" />
+        </View>
+      </View>
+      <TouchableOpacity
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: 20,
+          backgroundColor: "black",
+          position: "absolute",
+          top: 10,
+          right: 10,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {!props.isLiked ? (
+          <Feather name="heart" size={18} color={"white"} />
+        ) : (
+          <AntDesign name="heart" size={18} color="white" />
+        )}
+      </TouchableOpacity>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({});
+
+export default GameCard;
