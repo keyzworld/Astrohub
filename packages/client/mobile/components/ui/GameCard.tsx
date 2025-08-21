@@ -18,6 +18,10 @@ interface GameCardProps {
 }
 
 const GameCard = (props: GameCardProps) => {
+  const [isLiked, setIsLiked] = React.useState(props.isLiked);
+  const handleLikeClick = () => {
+    setIsLiked((prev) => !prev);
+  };
   return (
     <TouchableOpacity
       style={{ width: "48%", alignItems: "flex-start", position: "relative" }}
@@ -59,6 +63,7 @@ const GameCard = (props: GameCardProps) => {
         </View>
       </View>
       <TouchableOpacity
+        onPress={handleLikeClick}
         style={{
           width: 40,
           height: 40,
@@ -71,7 +76,7 @@ const GameCard = (props: GameCardProps) => {
           justifyContent: "center",
         }}
       >
-        {!props.isLiked ? (
+        {!isLiked ? (
           <Feather name="heart" size={18} color={"white"} />
         ) : (
           <AntDesign name="heart" size={18} color="white" />

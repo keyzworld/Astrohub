@@ -56,14 +56,14 @@ const Favorite = () => {
             width: 30,
             height: 30,
             borderRadius: 15,
-            backgroundColor: "#000",
+            backgroundColor: "#fff",
             alignItems: "center",
             justifyContent: "center",
             elevation: 5,
           }}
           onPress={toggleSearchBar}
         >
-          <Feather name="search" size={20} color={"#ffffff"} />
+          <Feather name="search" size={22} color={"#000000"} />
         </TouchableOpacity>
       </View>
       <Animated.View
@@ -112,7 +112,7 @@ const Favorite = () => {
               paddingVertical: 5,
               marginLeft: i == 0 ? 0 : 6,
             }}
-            className={`py-4 rounded-lg ${currentCategory == c.id ? "bg-black" : "bg-none"}`}
+            className={`rounded-lg ${currentCategory == c.id ? "bg-black" : "bg-none"}`}
           >
             <Text
               style={{ color: currentCategory == c.id ? "white" : "black" }}

@@ -46,7 +46,7 @@ export function TabBar() {
     >
       <View
         style={{
-          height: 55,
+          height: 58,
           flexDirection: "row",
           paddingHorizontal: 25,
           alignItems: "center",
