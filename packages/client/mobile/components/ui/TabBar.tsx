@@ -7,29 +7,61 @@ import {
   Feather,
   FontAwesome5,
 } from "@expo/vector-icons";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 import { usePathname } from "expo-router";
 
 export function TabBar() {
   const pathname = usePathname();
+
   const homeAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: pathname == "/home" ? 1 : 0 }],
+      transform: [
+        {
+          scale:
+            pathname == "/home"
+              ? withTiming(1, { duration: 300 })
+              : withTiming(0, { duration: 300 }),
+        },
+      ],
     };
   });
   const shopAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: pathname == "/orders" ? 1 : 0 }],
+      transform: [
+        {
+          scale:
+            pathname == "/orders"
+              ? withTiming(1, { duration: 300 })
+              : withTiming(0, { duration: 300 }),
+        },
+      ],
     };
   });
   const favAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: pathname == "/favorite" ? 1 : 0 }],
+      transform: [
+        {
+          scale:
+            pathname == "/favorite"
+              ? withTiming(1, { duration: 300 })
+              : withTiming(0, { duration: 300 }),
+        },
+      ],
     };
   });
   const profileeAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: pathname == "/profile" ? 1 : 0 }],
+      transform: [
+        {
+          scale:
+            pathname == "/profile"
+              ? withTiming(1, { duration: 300 })
+              : withTiming(0, { duration: 300 }),
+        },
+      ],
     };
   });
   return (

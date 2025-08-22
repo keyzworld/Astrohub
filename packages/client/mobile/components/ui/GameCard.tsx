@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 interface GameCardProps {
   index?: number;
   id: string;
@@ -22,8 +23,12 @@ const GameCard = (props: GameCardProps) => {
   const handleLikeClick = () => {
     setIsLiked((prev) => !prev);
   };
+  function handleRoute() {
+    router.push(`/(others)/details?id=${props.id}`);
+  }
   return (
     <TouchableOpacity
+      onPress={handleRoute}
       style={{ width: "48%", alignItems: "flex-start", position: "relative" }}
     >
       <View

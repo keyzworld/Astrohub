@@ -18,21 +18,27 @@ import Categories from "@/constants/Categories";
 import { Image } from "expo-image";
 import Games from "@/constants/Games";
 import GameCard from "@/components/ui/GameCard";
+import { MMkvStorage } from "@/utils/storage";
 
 const Home = () => {
   const [currentCategory, setCurrentCategory] = React.useState("all");
   const scale = useSharedValue(0);
+  const height = useSharedValue(0);
   const searchWrapperStyle = useAnimatedStyle(() => {
+    console.log(MMkvStorage);
     return {
-      display: scale.value == 0 ? "none" : "flex",
-      transform: [{ scaleY: scale.value }],
+      // transform: [{ scale: scale.value }],
+      maxHeight: height.value,
+      opacity: scale.value,
     };
   });
   function toggleSearchBar() {
     if (scale.value == 0) {
-      scale.value = withTiming(1, { duration: 500 });
+      scale.value = withTiming(1, { duration: 200 });
+      height.value = withTiming(50, { duration: 200 });
     } else {
-      scale.value = withTiming(0, { duration: 500 });
+      scale.value = withTiming(0, { duration: 200 });
+      height.value = withTiming(0, { duration: 200 });
     }
   }
   function selectCategory(category: string) {
@@ -56,28 +62,28 @@ const Home = () => {
         </View>
         <TouchableOpacity
           style={{
-            width: 30,
-            height: 30,
-            borderRadius: 15,
-            backgroundColor: "#fff",
+            width: 40,
+            height: 40,
+            borderRadius: 8,
+            backgroundColor: "#000",
             alignItems: "center",
             justifyContent: "center",
             elevation: 5,
           }}
           onPress={toggleSearchBar}
         >
-          <Feather name="search" size={22} color={"#000000"} />
+          <Feather name="search" size={22} color={"#fff"} />
         </TouchableOpacity>
       </View>
       <Animated.View
-        style={searchWrapperStyle}
+        style={[searchWrapperStyle]}
         className="w-full relative flex-row gap-2"
       >
         <TextInput
           style={{ paddingHorizontal: 30, flex: 0.78 }}
           placeholder="Search Games..."
           placeholderTextColor={"#ccc"}
-          className="border-[1.5px] border-['#ccc'] h-[50px] rounded-lg text-xl"
+          className="border-[1.5px] border-['#ccc'] h-full rounded-lg text-xl"
         />
         <Feather
           style={{
@@ -93,7 +99,7 @@ const Home = () => {
         />
         <TouchableOpacity
           style={{ flex: 0.2, elevation: 4 }}
-          className="w-[50px] h-[50px] bg-black rounded-lg"
+          className="w-[50px] h-full bg-black rounded-lg"
         >
           <Image
             style={{

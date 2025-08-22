@@ -19,20 +19,21 @@ const OrderCard = (props: OrderPropTypes) => {
         borderBottomColor: "#c0c0c0",
         borderBottomWidth: 1.4,
         paddingVertical: 15,
+        gap: 3,
       }}
-      className="flex-row gap-2"
+      className="flex-row"
     >
       <View
         style={{
           backgroundColor: "#c0c0c0",
-          borderRadius: 20,
-          width: 40,
-          height: 40,
+          borderRadius: 17.5,
+          width: 35,
+          height: 35,
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <Feather name="shopping-bag" size={24} color="#a0a0a0" />
+        <Feather name="shopping-bag" size={22} color="#a0a0a0" />
       </View>
       <View>
         <View
