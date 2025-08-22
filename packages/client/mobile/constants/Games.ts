@@ -20,7 +20,7 @@ export default [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJt84rDjf7QcKOD-cLuQDHXBx1oN_dx3b3eg&s",
     description:
-      "A free-to-play battle royale game where players fight to be the last one standing.",
+      "A free-to-play battle royale game where players fight to be the last one standing. Fortnite allows you to play online with friends and family. they have been upgrading everything to ensure players get the best gaming experience ever.",
     category: {
       id: "shooter",
       name: "Shooter",
@@ -121,8 +121,8 @@ export default [
     category: {
       id: "moba",
       name: "MOBA",
-      isLiked: true,
     },
+    isLiked: true,
   },
   {
     id: "resident-evil-4",

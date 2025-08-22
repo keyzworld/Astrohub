@@ -4,6 +4,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
 import useFavoriteStore from "@/stores/useFavoriteStore";
+import LikeButton from "./LikeButton";
 export interface GameCardProps {
   index?: number;
   id: string;
@@ -16,16 +17,10 @@ export interface GameCardProps {
     name: string;
   };
   rating?: number;
-  isLiked?: boolean;
+  isLiked: boolean;
 }
 
 const GameCard = (props: GameCardProps) => {
-  const [isLiked, setIsLiked] = React.useState(props.isLiked);
-  const { addFavorite } = useFavoriteStore();
-  const handleLikeClick = () => {
-    setIsLiked((prev) => !prev);
-    addFavorite(props);
-  };
   function handleRoute() {
     router.push(`/(others)/details?id=${props.id}`);
   }
@@ -70,26 +65,12 @@ const GameCard = (props: GameCardProps) => {
           <AntDesign name="star" size={18} color="#FFDB58" />
         </View>
       </View>
-      <TouchableOpacity
-        onPress={handleLikeClick}
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: 20,
-          backgroundColor: "black",
-          position: "absolute",
-          top: 10,
-          right: 10,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {!isLiked ? (
-          <Feather name="heart" size={18} color={"white"} />
-        ) : (
-          <AntDesign name="heart" size={18} color="white" />
-        )}
-      </TouchableOpacity>
+      <LikeButton
+        styles={{ backgroundColor: "black" }}
+        color="white"
+        game={props}
+        liked={props.isLiked!}
+      />
     </TouchableOpacity>
   );
 };
