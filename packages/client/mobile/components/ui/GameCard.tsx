@@ -3,7 +3,8 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
-interface GameCardProps {
+import useFavoriteStore from "@/stores/useFavoriteStore";
+export interface GameCardProps {
   index?: number;
   id: string;
   name: string;
@@ -20,8 +21,10 @@ interface GameCardProps {
 
 const GameCard = (props: GameCardProps) => {
   const [isLiked, setIsLiked] = React.useState(props.isLiked);
+  const { addFavorite } = useFavoriteStore();
   const handleLikeClick = () => {
     setIsLiked((prev) => !prev);
+    addFavorite(props);
   };
   function handleRoute() {
     router.push(`/(others)/details?id=${props.id}`);

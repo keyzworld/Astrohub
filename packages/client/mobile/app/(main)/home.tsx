@@ -18,14 +18,12 @@ import Categories from "@/constants/Categories";
 import { Image } from "expo-image";
 import Games from "@/constants/Games";
 import GameCard from "@/components/ui/GameCard";
-import { MMkvStorage } from "@/utils/storage";
 
 const Home = () => {
   const [currentCategory, setCurrentCategory] = React.useState("all");
   const scale = useSharedValue(0);
   const height = useSharedValue(0);
   const searchWrapperStyle = useAnimatedStyle(() => {
-    console.log(MMkvStorage);
     return {
       // transform: [{ scale: scale.value }],
       maxHeight: height.value,

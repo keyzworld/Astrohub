@@ -1,19 +1,17 @@
-import { StateStorage } from "zustand/middleware";
-import { MMKV } from "react-native-mmkv";
+import { PersistStorage } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const storage = new MMKV({
-  id: "game-store",
-  encryptionKey: "dev-key",
-});
-
-export const MMkvStorage: StateStorage = {
-  setItem: (key: string, value: string) => {
-    return storage.set(key, value);
+export const Storage: PersistStorage<unknown> = {
+  setItem: async (key: string, value: Record<string, any>) => {
+    const result = await AsyncStorage.setItem(key, JSON.stringify(value));
+    return result;
   },
-  getItem: (key: string) => {
-    return storage.getString(key) ?? null;
+  getItem: async (key: string) => {
+    const result = await AsyncStorage.getItem(key);
+    return result ? JSON.parse(result) : null;
   },
-  removeItem: (key: string) => {
-    return storage.delete(key);
+  removeItem: async (key: string) => {
+    const result = await AsyncStorage.removeItem(key);
+    return result;
   },
 };

@@ -22,6 +22,7 @@ const Orders = () => {
   const handleCategorySwitch = (category: "processing" | "delivered") => {
     setCurrentCategory(category);
   };
+
   const Scheme = useColorScheme();
   const overlayStyles = useAnimatedStyle(() => {
     return {

@@ -16,11 +16,12 @@ import Animated, {
 } from "react-native-reanimated";
 import Categories from "@/constants/Categories";
 import { Image } from "expo-image";
-import Games from "@/constants/Games";
-import GameCard from "@/components/ui/GameCard";
+import GameCard, { GameCardProps } from "@/components/ui/GameCard";
+import useFavoriteStore from "@/stores/useFavoriteStore";
 
 const Favorite = () => {
   const [currentCategory, setCurrentCategory] = React.useState("all");
+  const { favorites } = useFavoriteStore();
   const scale = useSharedValue(0);
   const height = useSharedValue(0);
   const searchWrapperStyle = useAnimatedStyle(() => {
@@ -136,8 +137,8 @@ const Favorite = () => {
         }}
         className="flex-1"
       >
-        {Games.map((g, i) => {
-          return <GameCard key={g.id} {...g} index={i} />;
+        {favorites.map((g: GameCardProps, i: number) => {
+          return <GameCard key={g.id} {...g} isLiked={true} index={i} />;
         })}
       </View>
     </ScrollView>
